@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1",
+    "src": "app.media.tutorial_pic1",
+    "title": "Step1 环境的搭建",
+    "inf": "本篇教程实现了快速入门——一个用于了解和学习HarmonyOS的应用程序。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "2",
+    "src": "app.media.tutorial_pic2",
+    "title": "Step2 使用Swiper构建运营广告位",
+    "inf": "Swiper组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "3",
+    "src": "app.media.tutorial_pic3",
+    "title": "Step3 创建和组合视图",
+    "inf": "Item定义子组件相关特征。相关组件支持使用条件渲染、循环渲染、懒加载等方式生成子组件。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "4",
+    "src": "app.media.tutorial_pic4",
+    "title": "Step4 网格和列表组建的使用",
+    "inf": "网格和列表组件中，当Item达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能，适合用于呈现同类数据类型或数据类型集",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "5",
+    "src": "app.media.tutorial_pic5",
+    "title": "Step5 应用架构设计基础——MVVM模式",
+    "inf": "ArkUI采取MVVM = Model + View + ViewModel模式，将数据与视图绑定在一起，更新数据的时候直接更新视图。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "6",
+    "src": "app.media.tutorial_pic6",
+    "title": "Step6 应用架构设计基础——三层架构",
+    "inf": "为了更好地适配复杂应用的开发，建议采用三层架构的方式对整个应用的功能进行模块化，实现高内聚、低耦合开发。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "7",
+    "src": "app.media.tutorial_pic7",
+    "title": "Step7 ArkWeb页面适配",
+    "inf": "ArkWeb（方舟Web）提供了Web组件，用于在应用程序中显示Web页面内容，为开发者提供页面加载、页面交互、页面调试等能力。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "8",
+    "src": "app.media.tutorial_pic8",
+    "title": "Step8 数据驱动UI更新",
+    "inf": "数据更新的同时会直接驱动UI的改变",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "9",
+    "src": "app.media.tutorial_pic9",
+    "title": "Step9 设置组件导航",
+    "inf": "Navigation组件适用于模块内页面切换，一次开发，多端部署场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "10",
+    "src": "app.media.tutorial_pic10",
+    "title": "Step10 原生智能：AI语音朗读",
+    "inf": "文本转语音服务提供将文本信息转换为语音并进行播报的能力，便于用户与设备进行互动，实现实时语音交互，文本播报。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "11",
+    "src": "app.media.tutorial_pic11",
+    "title": "Step11 分布式流转",
+    "inf": "流转能力打破设备界限，多设备联动，使用户应用程序可分可合、可流转，实现如邮件跨设备编辑、多设备协同健身、多屏游戏等分布式业务。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  },
+  {
+    "id": "12",
+    "src": "app.media.tutorial_pic12",
+    "title": "Step12 一次开发，多端部署",
+    "inf": "一套代码工程，一次开发上架，多端按需部署。支撑开发者快速高效的开发支持多种终端设备形态的应用，实现对不同设备兼容的同时，提供跨设备的流转、迁移和协同的分布式体验。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  }
+]
