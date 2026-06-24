@@ -2,10 +2,8 @@ import { banner } from '../view/banner'
 import { enablementView } from '../view/enablementView'
 import { tutorialView } from '../view/tutorialView'
 
-// 首页
-@Entry
 @ComponentV2
-struct Index {
+export struct QuickStartPage {
   @Local msg: string = 'Hello'
 
   build() {

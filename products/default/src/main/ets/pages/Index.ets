@@ -1,23 +1,20 @@
+import { QuickStartPage } from 'quickstart';
+import { CourseLearning } from 'learning';
+import { KnowledgeMap } from 'map';
+import { KnowledgeMapContent } from 'map';
+
+// 首頁
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('IndexHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column() {
+      // QuickStartPage()
+      // CourseLearning()
+      // KnowledgeMap()
+      KnowledgeMapContent()
     }
-    .height('100%')
-    .width('100%')
+    // .padding({ top: 36, bottom: 28 })
+    .background($r('app.color.full_window_background'))
   }
 }

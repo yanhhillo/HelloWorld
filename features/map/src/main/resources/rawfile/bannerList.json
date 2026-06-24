@@ -1,0 +1,32 @@
+[
+  {
+    "id": "0",
+    "src": "app.media.banner_pic0",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  },
+  {
+    "id": "1",
+    "src": "app.media.banner_pic1",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  },
+  {
+    "id": "2",
+    "src": "app.media.banner_pic2",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  },
+  {
+    "id": "3",
+    "src": "app.media.banner_pic3",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  },
+  {
+    "id": "4",
+    "src": "app.media.banner_pic4",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  },
+  {
+    "id": "5",
+    "src": "app.media.banner_pic5",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  }
+]
