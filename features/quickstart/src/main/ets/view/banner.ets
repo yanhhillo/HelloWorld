@@ -13,6 +13,7 @@ export struct banner {
     // new bannerClass('4', 'app.media.banner_pic4', ''),
     // new bannerClass('5', 'app.media.banner_pic5', ''),
   ]
+  @Consumer('quickStartPathStack') quickStartPathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear(): void {
     this.getBannerDataFromJSON();
@@ -43,6 +44,9 @@ export struct banner {
               left: 16
             })
             .objectFit(ImageFit.Contain)
+            .onClick(() => {
+              this.quickStartPathStack.pushPath({ name: "BannerDetailPage", param: item })
+            })
         },
         (item: bannerClass, index?: number) => item.id
       )

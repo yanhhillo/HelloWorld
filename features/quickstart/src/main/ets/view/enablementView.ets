@@ -29,6 +29,7 @@ export struct enablementView {
     // new articleClass('8', 'app.media.enablement_pic8', '开发者论坛', '和其他应用开发者交流技术、共同进步。',
     //   'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
+  @Consumer('quickStartPathStack') quickStartPathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear(): void {
     this.getEnablementFromJSON();
@@ -55,7 +56,15 @@ export struct enablementView {
           this.enablementList,
           (item: articleClass, index) => {
             GridItem() {
-              enablementItem({ enablement: item })
+              enablementItem({
+                enablement: item
+              })
+                .onClick(() => {
+                  this.quickStartPathStack.pushPath({
+                    name: "ArticleDetailPage",
+                    param: item
+                  })
+                })
             }
           },
           (item: articleClass, index) => item.id
@@ -78,9 +87,9 @@ export struct enablementView {
 }
 
 // enablementItem
-@Component
+@ComponentV2
 struct enablementItem {
-  @Prop enablement: articleClass;
+  @Param enablement: articleClass = new articleClass("", "", "", "", "");
 
   // @Local title: string = 'HarmonyOS第一课'
   // @Local inf: string = '基于真实的开发场景，提供向导式学习，多维度融合课程等内容，给开发者提供全新的学习体验。'

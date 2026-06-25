@@ -41,6 +41,7 @@ export struct tutorialView {
     //   '一套代码工程，一次开发上架，多端按需部署。支撑开发者快速高效的开发支持多种终端设备形态的应用，实现对不同设备兼容的同时，提供跨设备的流转、迁移和协同的分布式体验。',
     //   'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
+  @Consumer('quickStartPathStack') quickStartPathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear(): void {
     this.getTutorialFromJSON();
@@ -68,6 +69,12 @@ export struct tutorialView {
           (item: articleClass, index) => {
             ListItem() {
               tutorialItem({ tutorial: item })
+                .onClick(() => {
+                  this.quickStartPathStack.pushPath({
+                    name: "ArticleDetailPage",
+                    param: item
+                  })
+                })
             }
           },
           (item: articleClass, index) => item.id,
@@ -87,9 +94,9 @@ export struct tutorialView {
 }
 
 // tutorialItem
-@Component
+@ComponentV2
 struct tutorialItem {
-  @Prop tutorial: articleClass;
+  @Param tutorial: articleClass = new articleClass("", "", "", "", "");
 
   // @Local title: string = 'HarmonyOS第一课'
   // @Local inf: string = '基于真实的开发场景，提供向导式学习，多维度融合课程等内容，给开发者提供全新的学习体验。'
