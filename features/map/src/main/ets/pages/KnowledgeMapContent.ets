@@ -1,8 +1,8 @@
 @Preview
 @ComponentV2
 export struct KnowledgeMapContent {
+  @Consumer('knowledgeMapPageStack') knowledgeMapPageStack: NavPathStack = new NavPathStack();
   @Local section: SectionClass = new SectionClass(
-    "准备与学习",
     "加入HarmonyOS生态，注册成为开发者，通过HarmonyOS课程了解基本概念和基础知识，轻松开启HarmonyOS的开发旅程。",
     [
       new MaterialClass("HarmonyOS简介", [
@@ -21,45 +21,55 @@ export struct KnowledgeMapContent {
       ])
     ]
   );
+  @Param sectionTitle: string = "";
+  @Param sectionIndex: number = 0;
 
   build() {
-    Scroll() {
-      Column() {
-        Text(this.section.title)
-          .width('100%')
-          .textAlign(TextAlign.Start)
-          .fontSize(26)
-        Text(this.section.brief)
-          .width('100%')
-          .textAlign(TextAlign.Start)
-          .fontSize(14)
-          .fontColor(Color.Grey)
-          .margin({
-            top: 10,
-            bottom: 20
-          })
-        List({ space: 16 }) {
-          ForEach(
-            this.section.materials,
-            ((item: MaterialClass, index) => {
-              MaterialItem({ Material: item })
+    NavDestination() {
+      Scroll() {
+        Column() {
+          Text(this.sectionTitle)
+            .width('100%')
+            .textAlign(TextAlign.Start)
+            .fontSize(26)
+          Text(this.section.brief)
+            .width('100%')
+            .textAlign(TextAlign.Start)
+            .fontSize(14)
+            .fontColor(Color.Grey)
+            .margin({
+              top: 10,
+              bottom: 20
             })
-          )
+          List({ space: 16 }) {
+            ForEach(
+              this.section.materials,
+              ((item: MaterialClass, index) => {
+                MaterialItem({ Material: item })
+              }),
+              (item: MaterialClass, index) => item.subtitle
+            )
+          }
+          .width('100%')
         }
         .width('100%')
+        .padding({
+          left: 16,
+          right: 16
+        })
       }
       .width('100%')
-      .padding({
-        left: 16,
-        right: 16
-      })
+      .align(Alignment.TopStart)
+      .scrollBar(BarState.Off)
+      .constraintSize({ minHeight: '100%' })
+      .edgeEffect(EdgeEffect.Spring)
+      .scrollable(ScrollDirection.Vertical)
     }
-    .width('100%')
-    .align(Alignment.TopStart)
-    .scrollBar(BarState.Off)
-    .constraintSize({ minHeight: '100%' })
-    .edgeEffect(EdgeEffect.Spring)
-    .scrollable(ScrollDirection.Vertical)
+    .hideTitleBar(true)
+    .onBackPressed(() => {
+      this.knowledgeMapPageStack.pop();
+      return true;
+    })
   }
 }
 
@@ -172,12 +182,10 @@ export struct MaterialItem {
 
 // 整个区域 class
 export class SectionClass {
-  title: string = "";
   brief: string = "";
   materials: MaterialClass[] = []
 
-  constructor(title: string, brief: string, materials: MaterialClass[]) {
-    this.title = title;
+  constructor( brief: string, materials: MaterialClass[]) {
     this.brief = brief;
     this.materials = materials;
   }
