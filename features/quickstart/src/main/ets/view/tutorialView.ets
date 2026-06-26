@@ -1,6 +1,8 @@
 import { articleClass } from '../model/articleClass'
 import { bufferToString } from '../util/BufferUtil'
 
+import { BreakpointType, BreakpointTypeEnum } from 'utils';
+
 // tutorialView
 @ComponentV2
 export struct tutorialView {
@@ -42,6 +44,10 @@ export struct tutorialView {
     //   'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
   @Consumer('quickStartPathStack') quickStartPathStack: NavPathStack = new NavPathStack();
+  @Local currentBreakpoint: string = BreakpointTypeEnum.MD;
+
+  // @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
+
 
   aboutToAppear(): void {
     this.getTutorialFromJSON();
@@ -81,6 +87,10 @@ export struct tutorialView {
         )
       }
       .scrollBar(BarState.Off)
+      .lanes(
+        new BreakpointType<number>({ sm: 1, md: 2, lg: 3 }).getValue(this.currentBreakpoint),
+        new BreakpointType<number>({ sm: 0, md: 12, lg: 16 }).getValue(this.currentBreakpoint)
+      )
     }
     .width('100%')
     .padding({

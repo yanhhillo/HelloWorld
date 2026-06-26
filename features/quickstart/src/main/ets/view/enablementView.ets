@@ -1,6 +1,8 @@
 import { articleClass } from '../model/articleClass'
 import { bufferToString } from '../util/BufferUtil'
 
+import { BreakpointType, BreakpointTypeEnum } from 'utils';
+
 // enablementView
 @ComponentV2
 export struct enablementView {
@@ -30,6 +32,9 @@ export struct enablementView {
     //   'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
   @Consumer('quickStartPathStack') quickStartPathStack: NavPathStack = new NavPathStack();
+  @Local currentBreakpoint: string = BreakpointTypeEnum.MD;
+
+  // @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
 
   aboutToAppear(): void {
     this.getEnablementFromJSON();
@@ -66,10 +71,12 @@ export struct enablementView {
                   })
                 })
             }
+            .width(new BreakpointType<Length>({ sm: 160, md: 164, lg: 180 }).getValue(this.currentBreakpoint))
           },
           (item: articleClass, index) => item.id
         )
       }
+      .columnsGap(new BreakpointType<Length>({ sm: 8, md: 12, lg: 16 }).getValue(this.currentBreakpoint))
       .rowsTemplate('1fr')
       .columnsGap(8)
       .scrollBar(BarState.Off)

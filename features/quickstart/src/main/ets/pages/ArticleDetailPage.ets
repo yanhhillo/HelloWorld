@@ -14,8 +14,9 @@ export struct ArticleDetailPage {
   //   'https://developer.huawei.com/consumer/cn/forum/home?all=1');
 
   aboutToAppear(): void {
-    const param = this.quickStartPathStack.getParamByName('ArticleDetailPage')[0] as articleClass;
-    this.showTitle = param?.title ?? '';
+    const params = this.quickStartPathStack.getParamByName('ArticleDetailPage') as articleClass[];
+    this.showTitle = params[params.length - 1]?.title ?? '';
+    console.log('params', JSON.stringify(params))
   }
 
   build() {
@@ -32,7 +33,7 @@ export struct ArticleDetailPage {
               .onClick(() => {
                 this.quickStartPathStack.pop()
               })
-            Text(this.showTitle)
+            Text(this.title)
               .width('calc(100% - 50vp)')
               .fontSize(26)
               .fontWeight(FontWeight.Bold)

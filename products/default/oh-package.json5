@@ -8,6 +8,7 @@
   "dependencies": {
     "learning": "file:../../features/learning",
     "map": "file:../../features/map",
-    "quickstart": "file:../../features/quickstart"
+    "quickstart": "file:../../features/quickstart",
+    "utils": "file:../../commons/utils"
   }
 }

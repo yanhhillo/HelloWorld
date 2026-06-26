@@ -1,3 +1,5 @@
+import { BreakpointType, BreakpointTypeEnum } from 'utils';
+
 @Preview
 @ComponentV2
 export struct KnowledgeMapContent {
@@ -23,6 +25,9 @@ export struct KnowledgeMapContent {
   );
   @Param sectionTitle: string = "";
   @Param sectionIndex: number = 0;
+  @Local currentBreakpoint: string = BreakpointTypeEnum.MD;
+
+  // @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
 
   build() {
     NavDestination() {
@@ -51,6 +56,12 @@ export struct KnowledgeMapContent {
             )
           }
           .width('100%')
+          .lanes(new BreakpointType<number>({
+            sm: 1,
+            md: 1,
+            lg: 2,
+            xl: 2
+          }).getValue(this.currentBreakpoint))
         }
         .width('100%')
         .padding({
@@ -185,7 +196,7 @@ export class SectionClass {
   brief: string = "";
   materials: MaterialClass[] = []
 
-  constructor( brief: string, materials: MaterialClass[]) {
+  constructor(brief: string, materials: MaterialClass[]) {
     this.brief = brief;
     this.materials = materials;
   }

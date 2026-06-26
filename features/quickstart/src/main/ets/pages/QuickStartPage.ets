@@ -49,7 +49,8 @@ export struct QuickStartPage {
       .background('#f1f3f5')
     }
     .hideTitleBar(true)
-    .mode(NavigationMode.Auto)
+    // .mode(NavigationMode.Auto) // 自适应模式
+    .mode(NavigationMode.Stack) // 单页堆叠模式
     .navDestination(this.quickStartRouter)
   }
 }

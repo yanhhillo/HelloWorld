@@ -3,12 +3,24 @@ import { CourseLearning } from 'learning';
 import { KnowledgeMap } from 'map';
 import { KnowledgeMapContent } from 'map';
 
+import { BreakpointSystem, BreakpointTypeEnum } from 'utils'
+
 // 首頁
 @Entry
 @Component
 struct Index {
   @State currentIndex: number = 0;
   private tabsController: TabsController = new TabsController(); // Tabs组件控制器
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem(); // 媒体查询监听断点变化的实例
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
+
+  aboutToAppear(): void {
+    this.breakpointSystem.register(); // 注册媒体事件的监听
+  }
+
+  aboutToDisappear(): void {
+    this.breakpointSystem.unregister(); // 解除监听
+  }
 
   @Builder
   tabBarBuilder(title: string, targetIndex: number, selectedIcon: string, unselectIcon: string) {
@@ -35,7 +47,10 @@ struct Index {
   }
 
   build() {
-    Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
+    Tabs({
+      barPosition: this.currentBreakpoint == BreakpointTypeEnum.LG ? BarPosition.Start : BarPosition.End,
+      controller: this.tabsController
+    }) {
       // 设置barPosition为BarPosition.End时，页签栏会位于应用界面的下方进行显示
       TabContent() {
         QuickStartPage()
@@ -59,7 +74,9 @@ struct Index {
       )
     }
     .scrollable(false) // 设置为false限制Tabs无法横向滑动切换页签
-    .vertical(false) // 设置为false限制Tabs为非纵向导航条
+    .vertical(
+      this.currentBreakpoint == BreakpointTypeEnum.LG ? true : false
+    ) // true限制Tabs为纵向导航条，false为非纵向
     .divider({
       strokeWidth: 0.5,
       color: '#0D182431'

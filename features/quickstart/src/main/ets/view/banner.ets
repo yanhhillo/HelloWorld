@@ -1,6 +1,8 @@
 import { bannerClass } from '../model/bannerClass'
 import { bufferToString } from '../util/BufferUtil';
 
+import { BreakpointType, BreakpointTypeEnum } from 'utils';
+
 // banner
 @Preview
 @ComponentV2
@@ -14,6 +16,9 @@ export struct banner {
     // new bannerClass('5', 'app.media.banner_pic5', ''),
   ]
   @Consumer('quickStartPathStack') quickStartPathStack: NavPathStack = new NavPathStack();
+  @Local currentBreakpoint: string = BreakpointTypeEnum.MD;
+
+  // @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
 
   aboutToAppear(): void {
     this.getBannerDataFromJSON();
@@ -51,10 +56,17 @@ export struct banner {
         (item: bannerClass, index?: number) => item.id
       )
     }
-    .indicator(
-      new DotIndicator().color('#1a000000').selectedColor('#ff0032ff')
-    )
+    // .indicator(
+    //   new DotIndicator().color('#1a000000').selectedColor('#ff0032ff')
+    // )
     .autoPlay(true)
     .loop(true)
+    // Swiper组件的一多适配
+    .displayCount(new BreakpointType({ sm: 1, md: 2, lg: 2 }).getValue(this.currentBreakpoint))
+    .displayMode(SwiperDisplayMode.STRETCH)
+    .indicator(this.currentBreakpoint === BreakpointTypeEnum.SM ?
+      Indicator.dot().color('#1a000000').selectedColor('#0A59F7') :
+      false)
+    .nextMargin(new BreakpointType<Length>({ sm: 0, md: 12, lg: 266 }).getValue(this.currentBreakpoint))
   }
 }
