@@ -1,11 +1,32 @@
-import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import {
+  abilityAccessCtrl,
+  bundleManager,
+  Permissions,
+  AbilityConstant,
+  ConfigurationConstant,
+  UIAbility,
+  Want
+} from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult | Promise<AbilityConstant.OnContinueResult> {
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 分布式流转
+    this.checkPermissions();
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      try {
+        this.context.restoreWindowStage(new LocalStorage());
+      } catch (error) {
+      }
+    }
+    //
     try {
       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     } catch (err) {
@@ -44,5 +65,23 @@ export default class EntryAbility extends UIAbility {
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+
+  async checkPermissions(): Promise<void> {
+    const permissions: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+    const accessManager = abilityAccessCtrl.createAtManager();
+    try {
+      const bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+      const bundleInfo = await bundleManager.getBundleInfoForSelf(bundleFlags);
+      const grantStatus = await accessManager.checkAccessToken(bundleInfo.appInfo.accessTokenId, permissions[0]);
+
+      if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
+        accessManager.requestPermissionsFromUser(this.context, permissions).catch(() => {
+        });
+      }
+    } catch (err) {
+      console.error('EntryAbility', 'checkPermissions', `Catch err: ${err}`);
+      return;
+    }
   }
 }

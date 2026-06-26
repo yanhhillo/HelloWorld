@@ -30,7 +30,8 @@
               "ohos.want.action.home"
             ]
           }
-        ]
+        ],
+        "continuable": true // 启用应用接续能力
       }
     ],
     "extensionAbilities": [
@@ -51,6 +52,17 @@
       {
         "name": "ohos.permission.INTERNET",
         "reason": "$string:apply_for_network"
+      },
+      // 分布式流转 申请“ohos.permission.DISTRIBUTED_DATASYNC”权限
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:distributed_data_sync",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }
