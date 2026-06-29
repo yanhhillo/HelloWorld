@@ -57,6 +57,10 @@
     {
       "name": "uicomponents",
       "srcPath": "./commons/uicomponents",
+    },
+    {
+      "name": "layout",
+      "srcPath": "./features/layout",
     }
   ]
 }

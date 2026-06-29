@@ -6,6 +6,7 @@
   "author": "",
   "license": "",
   "dependencies": {
+    "layout": "file:../../features/layout",
     "learning": "file:../../features/learning",
     "map": "file:../../features/map",
     "quickstart": "file:../../features/quickstart",

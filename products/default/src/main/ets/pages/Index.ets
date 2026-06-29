@@ -1,3 +1,4 @@
+import { LayoutPage } from 'layout';
 import { QuickStartPage } from 'quickstart';
 import { CourseLearning } from 'learning';
 import { KnowledgeMap } from 'map';
@@ -53,7 +54,8 @@ struct Index {
     }) {
       // 设置barPosition为BarPosition.End时，页签栏会位于应用界面的下方进行显示
       TabContent() {
-        QuickStartPage()
+        // QuickStartPage()
+        LayoutPage()
       }.tabBar(
         // 'QuickStartPage
         this.tabBarBuilder('快速入门', 0, 'app.media.ic_01_on', 'app.media.ic_01_off')
