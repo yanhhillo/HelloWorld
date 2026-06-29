@@ -1,7 +1,10 @@
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
+
 @ComponentV2
 export struct FlexShowList {
   @Consumer('layoutPathStack') layoutPathStack: NavPathStack = new NavPathStack();
   @Param title: string = "";
+  @Local flexList: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
   build() {
     NavDestination() {
@@ -10,6 +13,27 @@ export struct FlexShowList {
           Text(this.title)
             .fontSize(26)
             .fontWeight(FontWeight.Bold)
+            .margin({ bottom: 20 })
+          Flex({
+            direction: FlexDirection.Row,
+            justifyContent: FlexAlign.Start,
+            wrap: FlexWrap.Wrap,
+            space: {
+              main: LengthMetrics.vp(20), // 使用 LengthMetrics.vp()
+              cross: LengthMetrics.vp(10)
+            }
+          }) {
+            ForEach(
+              this.flexList,
+              ((item: number, index) => {
+                Text(String(item))
+                // .width(40)
+                  .fontSize(14)
+                  .textAlign(TextAlign.Center)
+              }),
+              (item: number, index) => String(index)
+            )
+          }
         }
         .width('100%')
         .height('100%')
